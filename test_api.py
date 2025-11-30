@@ -62,6 +62,18 @@ def test_login_success():
     assert data['expires_in'] == 3600
 
     test_access_token = data['access_token']
+    
+def test_login_unsuccess(): #without api key
+    # step hitapi
+
+    payload = {
+    "email": "pyautoid@gmail.com",
+    "password": ""
+    }
+
+    response = requests.post(f'{BASE_URL}/auth/v1/token?grant_type=password', json=payload)
+    # step assert
+    assert response.status_code == 400
 
 # CREATE PROD
 def test_create_product_success():
@@ -74,8 +86,6 @@ def test_create_product_success():
     "category": "Electronics",
     "user_id": USER_ID
     }
-    
-    print(productnya)
 
     headers = {"apikey":API_KEY,
             "Authorization": f"Bearer {test_access_token}",
