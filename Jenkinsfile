@@ -34,7 +34,7 @@ pipeline {
             }
         }
         
-        stage('Generate Report & Notify') {
+        stage('Generate Report & Kirim Telegram') {
             steps {
                 script {
                     // Generate Allure Report
@@ -75,7 +75,7 @@ Skipped: ${summaryJson.statistic.skipped}
                     def message = """
 Test Automation Report
 
-Automation yang enih: ${env.JOB_NAME}
+Automation yang enih:  ${env.JOB_NAME}
 Build: #${env.BUILD_NUMBER}
 Status: ${status}
 Duration: ${currentBuild.durationString}
