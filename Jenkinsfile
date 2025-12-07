@@ -73,7 +73,7 @@ Skipped: ${summaryJson.statistic.skipped}
                     
                     // Bikin pesen chat
                     def message = """
-<b>Test Automation Report<b>
+Test Automation Report
 
 Automation yang enih: ${env.JOB_NAME}
 Build: #${env.BUILD_NUMBER}
@@ -89,7 +89,6 @@ Jenkins Build: ${env.BUILD_URL}
                     sh """
                     curl -s -X POST https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage \
                     -d chat_id=${TELEGRAM_CHAT_ID} \
-                    -d parse_mode=HTML \
                     -d disable_web_page_preview=false \
                     -d text='${message}'
                     """
